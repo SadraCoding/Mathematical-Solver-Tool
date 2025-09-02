@@ -1,0 +1,269 @@
+﻿<Window x:Class="MathematicsSolverTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Height="720" Width="1280"
+        ResizeMode="CanResize"
+        WindowState="Normal"
+        SizeChanged="Window_SizeChanged"
+        Icon="/Images/icon.ico"
+        Title="Math Tools">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/background.jpg" Stretch="Fill" />
+    </Window.Background>
+    <Border BorderThickness="9" CornerRadius="13">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="LightPink" Offset="0"/>
+                <GradientStop Color="Cyan" Offset="0.5"/>
+                <GradientStop Color="DarkOrange" Offset="0.75"/>
+                <GradientStop Color="Aqua" Offset="1"/>
+                <GradientStop Color="DarkGoldenrod" Offset="0.25"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Grid x:Name="MainGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Menu -->
+            <Border Grid.Column="0" CornerRadius="15" BorderBrush="White" BorderThickness="3" Margin="10" Background="#1a1a1a">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Menu" HorizontalAlignment="Center" VerticalAlignment="Top" Height="62" 
+                       FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black" FontSize="40" Foreground="White" 
+                       Margin="0,120,0,0" Grid.Row="1"/>
+
+                    <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                        <!-- Tools Button -->
+                        <Button Content="Tools" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black" FontSize="38" 
+                            Foreground="#FFDC420F" Background="LightGray" BorderThickness="0" 
+                            Click="Button2_Click" FontWeight="Bold" Cursor="Hand" Height="70" 
+                            Margin="10,10,10,10">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border CornerRadius="25" Background="White" BorderBrush="White" BorderThickness="4">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <!-- Game Button -->
+
+                        <Button Content="Game" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black" FontSize="38" 
+                            Foreground="#FFDC420F" Background="LightGray" BorderThickness="0" 
+                            Click="Games_Click" FontWeight="Bold" Cursor="Hand" Height="73" 
+                            Margin="10,10,10,10">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border CornerRadius="25" Background="White" BorderBrush="White" BorderThickness="4">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Main Content Area -->
+            <Grid Grid.Column="1" Margin="10">
+                <!-- Main Content Rectangle -->
+                <Rectangle x:Name="ContentRectangle" Stroke="White" StrokeThickness="3" RadiusX="10" RadiusY="10">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#000000" Offset="0.0" />
+                            <GradientStop Color="#0d0d0d" Offset="0.125" />
+                            <GradientStop Color="#1a1a1a" Offset="0.25" />
+                            <GradientStop Color="	#333333" Offset="0.5" />
+                            <GradientStop Color="#404040" Offset="0.625" />
+                            <GradientStop Color="#4d4d4d" Offset="0.75" />
+                            <GradientStop Color="	#595959" Offset="1" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <!-- Calculate Tools Grid -->
+                <Grid x:Name="ToolsGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Hypotenuse -->
+                    <Button x:Name="Hypotenuse" Click="Hypotenuse_Click" Cursor="Hand" Margin="10" Grid.Row="0" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/hypotenuse.png" Height="80" Width="80" Margin="5"/>
+                            <TextBlock Text="Calculate Hypotenuse" Foreground="DarkBlue" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black"
+                                       FontSize="20" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5"/>
+                        </StackPanel>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border CornerRadius="15" Background="#bebebe" BorderBrush="DarkBlue" BorderThickness="3">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Equation of two unknowns -->
+                    <Button x:Name="Equation_of_two_unknowns" Click="Equation_of_two_unknowns_Click" Cursor="Hand" Margin="10" Grid.Row="0" Grid.Column="1">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/equation_of_two_unknowns.png" Height="80" Width="80" Margin="5"/>
+                            <TextBlock Text="Solve Two-Variable Equations" Foreground="DarkBlue" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black"
+                                       FontSize="20" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5"/>
+                        </StackPanel>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border CornerRadius="15" Background="#bebebe" BorderBrush="DarkBlue" BorderThickness="3">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Second degree equation -->
+                    <Button x:Name="Second_degree_equation" Click="Second_degree_equation_Click" Cursor="Hand" Margin="10" Grid.Row="1" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/second_degree_equation.png" Height="80" Width="80" Margin="5"/>
+                            <TextBlock Text="Solve Quadratic Equations" Foreground="DarkBlue" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black"
+                                       FontSize="20" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5"/>
+                        </StackPanel>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border CornerRadius="15" Background="#bebebe" BorderBrush="DarkBlue" BorderThickness="3">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Area -->
+                    <Button x:Name="Area" Click="Area_Click" Cursor="Hand" Margin="10" Grid.Row="1" Grid.Column="1">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/area.png" Height="80" Width="80" Margin="5"/>
+                            <TextBlock Text="Area of Regular Polygon" Foreground="DarkBlue" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black"
+                                       FontSize="20" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5"/>
+                        </StackPanel>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border CornerRadius="15" Background="#bebebe" BorderBrush="DarkBlue" BorderThickness="3">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- LCM&GCD -->
+                    <Button x:Name="LCMGCD" Click="LCMGCD_Click" Cursor="Hand" Margin="10" Grid.Row="2" Grid.Column="0">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/lcmgcd.png" Height="80" Width="80" Margin="5"/>
+                            <TextBlock Text="LCM  GCD" Foreground="DarkBlue" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black"
+                                       FontSize="20" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5"/>
+                        </StackPanel>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border CornerRadius="15" Background="#bebebe" BorderBrush="DarkBlue" BorderThickness="3">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Root -->
+                    <Button x:Name="Root" Click="Root_Click" Cursor="Hand" Margin="10" Grid.Row="2" Grid.Column="1">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/root.png" Height="80" Width="80" Margin="5"/>
+                            <TextBlock Text="Calculate Nth Root" Foreground="DarkBlue" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black"
+                                       FontSize="20" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5"/>
+                        </StackPanel>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border CornerRadius="15" Background="#bebebe" BorderBrush="DarkBlue" BorderThickness="3">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <!-- Games Grid -->
+                <Grid x:Name="GameGrid" Visibility="Collapsed">
+                    <Grid.Background>
+                        <ImageBrush Opacity="0.5" ImageSource="/Images/calculator.jpg" Stretch="Fill" />
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Margin="20" VerticalAlignment="Center">
+                        <Label x:Name="Hint1" Content="Click on the Start Game button" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black" 
+                               FontSize="20" HorizontalAlignment="Center"/>
+                        <Label x:Name="Hint2" Content="Calculate the result" HorizontalContentAlignment="Center" 
+                               VerticalContentAlignment="Center" Visibility="Collapsed" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black" 
+                               FontSize="20" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,20">
+                            <Label x:Name="timeLabel" Content="Time remaining: 60" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black" 
+                                   FontSize="24" Foreground="#cc0000" Margin="20,0"/>
+                            <Label x:Name="scoreLabel" Content="Score: 0" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black" 
+                                   FontSize="24" Foreground="Green" Margin="20,0"/>
+                        </StackPanel>
+                        <Label x:Name="equationLabel" Content="" HorizontalContentAlignment="Center" 
+                               VerticalContentAlignment="Center" FontSize="40" FontWeight="Bold" 
+                               Margin="0,20,0,20" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="answerTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                                 FontSize="40" Width="300" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
+                        <Button x:Name="startButton" Content="Start Game" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black" 
+                                FontSize="28" Foreground="#FFDC420F" BorderThickness="0" Click="startButton_Click" 
+                                FontWeight="Bold" Cursor="Hand" Margin="10" Width="200" Height="50">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border CornerRadius="15" Background="LightGray" BorderBrush="#007ACC" BorderThickness="2">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="restartButton" Content="Restart" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black" 
+                                FontSize="28" Foreground="#FFDC420F" BorderThickness="0" Click="restartButton_Click" 
+                                FontWeight="Bold" Cursor="Hand" Margin="10" Width="150" Height="50" Visibility="Collapsed">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border CornerRadius="15" Background="LightGray" BorderBrush="#007ACC" BorderThickness="2">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button x:Name="submitButton" Content="Submit" FontFamily="/Fonts/ArchivoBlack-Regular.ttf#Archivo Black"
+                                FontSize="28" Foreground="DarkSlateBlue" BorderThickness="0" Click="submitButton_Click" 
+                                FontWeight="Bold" Cursor="Hand" Margin="10" Width="150" Height="50" Visibility="Collapsed">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border CornerRadius="15" Background="LightGray" BorderBrush="#007ACC" BorderThickness="2">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
