@@ -12,7 +12,7 @@ This software is designed to solve algebraic equations, including quadratic and 
 
 ## Background
 
-The software was developed by Sadra Milani Moghaddam ([Personal Website](https://sadramilani.ir)) in 9th grade with the support and mentorship of Dr. Mostafa Kafaei Razavi ([LinkedIn Profile](https://www.linkedin.com/in/mostafa-kafaei-razavi-24427582/)).
+The software was developed by SadraCoding ([GitHub](https://github.com/SadraCoding)) in 9th grade with the support and mentorship of Dr. Mostafa Kafaei Razavi ([LinkedIn Profile](https://www.linkedin.com/in/mostafa-kafaei-razavi-24427582/)).
 
 Achievements:
 - 1st place in the regional stage the Khwarizmi Programming Festival.
@@ -38,4 +38,4 @@ Special thanks to Dr. Mostafa Kafaei Razavi for his invaluable guidance and supp
 
 ## Contact
 
-For more information, visit [sadramilani.ir](https://sadramilani.ir) or contact Sadra Milani Moghadam.
+For more information, visit [GitHub](https://github.com/SadraCoding).
